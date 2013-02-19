@@ -1,38 +1,7 @@
-<tal:slider_information
-      tal:define="location view/get_location_info;
-                  body_text view/get_body_text;
-                  slideropen_class_loc python: 'slider-wrapper theme-default grid_12 slideropen slider-location-or-text';
-                  slideropen_class_no_loc python: 'slider-wrapper theme-default grid_12 slideropen';">
-
-<div id="slideropen" tal:attributes="class python:[slideropen_class_no_loc, slideropen_class_loc][bool(location or body_text)]" style="display:none">
-    <div class="ribbon"></div>
-  <tal:block>
-        <div class="title-subtitle-location" tal:condition="location">
-        <a href="#" id="carousel_link_title_image"
-            tal:attributes="href location/url">
-          <img alt="" tal:condition="location/img|nothing" src="#" id="carousel_title_img"
-             tal:attributes="src location/img;alt location/Title" />
-        </a>
-        <h3 id="carousel_title">
-          <a href="#"
-             tal:attributes="href location/url">
-              <span tal:content="location/Title"/>
-          </a>
-                </h3>
-      </div>
-
-      <div tal:condition="body_text" id="carousel_body_text">
-           <div tal:content="structure body_text"></div>
-       </div>
-    </tal:block>
-    <tal:block tal:condition="not:location">
-    </tal:block>
-  <div id="slidergeo" class="nivoSLider">
-      <img title="azz" tal:repeat="image view/carousel_images" tal:replace="structure image"/>
-  </div>
-    <tal:captions tal:repeat="caption view/carousel_captions">
-        <div id="#title" class="nivo-html-caption" tal:replace="structure caption"> </div>
-    </tal:captions>
-
-</div> <!-- @slider-wrapper -->
-</tal:slider_information>
+<div id="simpleslider">
+  <ul class="bjqs">
+    <li tal:repeat="item view/slider_images">
+        <img tal:replace="structure item">
+    </li>
+  </ul>
+</div>

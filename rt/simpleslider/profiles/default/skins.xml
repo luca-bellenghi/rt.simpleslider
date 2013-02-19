@@ -42,5 +42,11 @@
   <layer name="simpleslider_resources"
      insert-after="simpleslider_templates"/>
  </skin-path>
+ <skin-path name="*">
+  <layer name="simpleslider_templates"
+     insert-after="custom"/>
+  <layer name="simpleslider_resources"
+     insert-after="simpleslider_templates"/>
+ </skin-path>
 
 </object>

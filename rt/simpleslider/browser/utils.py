@@ -67,28 +67,6 @@ class SliderUtils(object):
         """
         check if we should show slider in current context
         """
-        obj, show = self._get_configuration_object()
-        if show == SLIDER_NO:
-            return False
-        elif show == SLIDER_YES:
-            return True
-
-    def get_slider_text(self):
-        """
-        get the text of the configuration obj for slider
-        """
-        obj, show = self._get_configuration_object()
-        if obj:
-            try:
-                return obj.slider_description()
-            except AttributeError:
-                return ''
-        return ''
-
-    def _get_configuration_object(self):
-        """
-        Iterate on the aq_chain to get the configuration object
-        """
         for obj in self.chain:
 
             if INavigationRoot.providedBy(obj): #Plone site return default view
@@ -103,10 +81,15 @@ class SliderUtils(object):
                     show = field.getAccessor(obj)()
                     if show == SLIDER_PARENT: #skip context go up
                         continue
-                    elif show in [SLIDER_NO,SLIDER_YES] :
-                        return obj, show
-        return None, None
+                    elif show == SLIDER_NO:
+                        return False
+                    elif show == SLIDER_YES:
+                        return True
+                    elif show == SLIDER_MYSELF:
+                        return True
+        return False
 
+    @memoize
     def slider_source(self):
         """ Return source object for slider. If nothing is found
         return None """

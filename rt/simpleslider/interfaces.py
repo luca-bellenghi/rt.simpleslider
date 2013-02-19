@@ -11,7 +11,16 @@ class ISliderUtils(Interface):
 class ISliderSource(Interface):
     """ Interface that provides slider source """
 
-    def getImages():
+    def getSliderImages():
+        """ returns generator """
+
+    def getCaption():
+        """ """
+
+    def getImage():
+        """ """
+
+    def items():
         """ """
 
 

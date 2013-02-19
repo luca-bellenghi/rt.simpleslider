@@ -21,15 +21,3 @@ class Slider(ViewletBase):
 
     def slider_images(self):
         return self.request.slider_source.getSliderImages()
-
-    def slider_captions(self):
-        return self.request.slider_source.getSliderCaption()
-
-    def get_location_info(self):
-        return {}
-
-    def get_body_text(self):
-        """
-        We are assuming the object that configure
-        """
-        return self.request.slider_tool.get_slider_text()

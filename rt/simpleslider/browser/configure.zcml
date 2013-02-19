@@ -19,9 +19,12 @@
          layer="..interfaces.IBrowserLayer"
          permission="cmf.ManagePortal"
      />
+    <adapter factory=".controlpanel.ControlPanelAdapter" />
 
     <adapter factory=".utils.SliderUtils" />
     <adapter factory=".slidersource.GenericSliderSource" />
-    <adapter factory=".controlpanel.ControlPanelAdapter" />
+    <adapter factory=".slidersource.FolderishSliderSource" />
+    <adapter factory=".slidersource.ImageSliderSource" />
+    <adapter factory=".slidersource.LeadImageSliderSource" />
 
 </configure>
