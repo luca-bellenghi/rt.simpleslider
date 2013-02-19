@@ -1,0 +1,27 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="rt.simpleslider">
+
+    <browser:viewlet
+        for="*"
+        name="rt.simpleslider.slider"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class=".viewlets.Slider"
+        template="slider_viewlet.pt"
+        layer="..interfaces.IBrowserLayer"
+        permission="zope2.View"
+        />
+    <browser:page
+         name="rt.simpleslider.schema-customization"
+         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+         class=".controlpanel.ControlPanel"
+         layer="..interfaces.IBrowserLayer"
+         permission="cmf.ManagePortal"
+     />
+
+    <adapter factory=".utils.SliderUtils" />
+    <adapter factory=".slidersource.GenericSliderSource" />
+    <adapter factory=".controlpanel.ControlPanelAdapter" />
+
+</configure>
