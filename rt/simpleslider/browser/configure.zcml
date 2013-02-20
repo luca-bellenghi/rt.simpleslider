@@ -30,6 +30,23 @@
 
     <configure zcml:condition="installed collective.contentleadimage">
         <adapter factory=".leadimagesource.ContentLeadImageSliderSource" />
+        <browser:viewlet
+            name="collective.contentleadimage.thumbnail"
+            for="collective.contentleadimage.interfaces.ILeadImageable"
+            class=".leadimagesource.LeadImageViewletThumb"
+            manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+            layer="..interfaces.IBrowserLayer"
+            permission="zope2.View"
+        />
+
+        <browser:viewlet
+            name="collective.contentleadimage.full"
+            for="collective.contentleadimage.interfaces.ILeadImageable"
+            class=".leadimagesource.LeadImageViewletFull"
+            manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+            layer="..interfaces.IBrowserLayer"
+            permission="zope2.View"
+        />
     </configure>
 
 </configure>
