@@ -13,13 +13,12 @@
         permission="zope2.View"
         />
     <browser:page
-         name="rt.simpleslider.schema-customization"
+         name="simpleslider-settings"
          for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-         class=".controlpanel.ControlPanel"
+         class=".controlpanel.SliderSettingsControlPanel"
          layer="..interfaces.IBrowserLayer"
          permission="cmf.ManagePortal"
      />
-    <adapter factory=".controlpanel.ControlPanelAdapter" />
 
     <adapter factory=".utils.SliderUtils" />
     <adapter factory=".slidersource.GenericSliderSource" />

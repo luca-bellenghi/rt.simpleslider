@@ -4,14 +4,14 @@ from archetypes.schemaextender.field import ExtensionField
 from archetypes.referencebrowserwidget.widget import ReferenceBrowserWidget
 from zope.component import adapts
 from zope.interface import implements
-from zope.component._api import getUtilitiesFor, getUtility
+from zope.component import getUtility
+from plone.registry.interfaces import IRegistry
 
 from Products.Archetypes.interfaces.base import IBaseObject
 from Products.Archetypes.Field import StringField, TextField, ReferenceField
 from Products.Archetypes.Widget import SelectionWidget, RichWidget
-from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 
-from rt.simpleslider.browser.controlpanel import IControlPanel
+from rt.simpleslider.interfaces import ISliderSettings
 from rt.simpleslider import MessageFactory as _
 
 
@@ -30,26 +30,21 @@ class ReferenceField(ExtensionField, ReferenceField):
 class BaseSchemaExtender(object):
     adapts(IBaseObject)
     implements(ISchemaExtender)
+    fields = []
 
     def __init__(self, context):
         self.context = context
-    fields = []
 
     def getFields(self):
-        if not len(tuple(getUtilitiesFor(IPloneSiteRoot))):
-            return []
-        portal = getUtility(IPloneSiteRoot)
-        pprop = IControlPanel(portal)
-        if pprop is not None:
-            portal_type = getattr(self.context, 'portal_type', None)
-            if portal_type in getattr(pprop, self._attr):
-                return self.fields
+        registry = getUtility(IRegistry)
+        settings = registry.forInterface(ISliderSettings)
+        portal_type = getattr(self.context, 'portal_type', None)
+        if portal_type in settings.simpleslider_allowed_types:
+            return self.fields
         return []
 
 
 class SchemaExtender(BaseSchemaExtender):
-    _attr = 'simpleslider_allowed_types'
-
     fields = [
         StringField('show_slider',
            schemata='settings',

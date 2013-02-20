@@ -8,7 +8,7 @@
              category="Products"
              conditional_expression=""
              icon_expr="string:${portal_url}/wrench.png"
-             url_expr="string:${portal_url}/@@rt.simpleslider.schema-customization"
+             url_expr="string:${portal_url}/@@simpleslider-settings"
              visible="True"
              i18n:attributes="title">
     <permission>Manage Portal</permission>
