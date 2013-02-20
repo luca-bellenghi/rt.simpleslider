@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="rt.simpleslider">
 
     <browser:viewlet
@@ -26,5 +27,9 @@
     <adapter factory=".slidersource.ImageSliderSource" />
     <adapter factory=".slidersource.TopicSliderSource" />
     <adapter factory=".slidersource.BrainSliderSource" />
+
+    <configure zcml:condition="installed collective.contentleadimage">
+        <adapter factory=".leadimagesource.ContentLeadImageSliderSource" />
+    </configure>
 
 </configure>

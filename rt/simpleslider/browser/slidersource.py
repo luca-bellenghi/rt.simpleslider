@@ -7,9 +7,6 @@ from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 from Products.Archetypes.interfaces.base import IBaseFolder, IBaseObject
 from Products.ATContentTypes.interfaces import IATImage
 from Products.ATContentTypes.interfaces.topic import IATTopic
-from collective.contentleadimage.interfaces import ILeadImageable
-from collective.contentleadimage.config import IMAGE_FIELD_NAME
-from collective.contentleadimage.config import IMAGE_CAPTION_FIELD_NAME
 
 from rt.simpleslider.interfaces import ISliderSource, ISliderBrain
 from rt.simpleslider import SIZE
@@ -26,28 +23,13 @@ class GenericSliderSource(object):
         self.view = view
 
     def items(self):
-        if ILeadImageable.providedBy(self.context):
-            return [self.context]
-        return 
+        return []
 
     def getCaption(self):
-        if not ILeadImageable.providedBy(self.context):
-            return self.context.title_or_id()
-
-        field = self.context.getField(IMAGE_CAPTION_FIELD_NAME)
-        caption = field.get_size(self.context) != 0
-        if not caption:
-            return self.context.title_or_id()
-        else:
-            return field.get(self.context)
+        return self.context.title_or_id()
 
     def getImage(self):
-        if not ILeadImageable.providedBy(self.context):
-            return ''
-        else:
-            caption = self.getCaption()
-            field = self.context.getField(IMAGE_FIELD_NAME)
-            return field.tag(self.context, title=caption)
+        return ''
 
     def getSliderImages(self):
         for item in self.items():
@@ -109,7 +91,8 @@ class BrainSliderSource(GenericSliderSource):
         return self.brain.Title
 
     def getImage(self):
-        if self.brain.hasContentLeadImage:
+        cl = getattr(self.brain, 'hasContentLeadImage', False)
+        if cl:
             return '<img src="%s/leadImage_%s" title="%s"/>' % \
                     (self.brain.getURL(), SIZE, self.getCaption())
         elif self.brain.portal_type == 'Image':
