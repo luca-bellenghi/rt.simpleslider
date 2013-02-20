@@ -26,3 +26,7 @@ class ISliderSource(Interface):
 
 class IBrowserLayer(Interface):
     """ Marker interface when this add-on is installed """
+
+
+class ISliderBrain(Interface):
+    """ Marker interface for slider brain wrapper """

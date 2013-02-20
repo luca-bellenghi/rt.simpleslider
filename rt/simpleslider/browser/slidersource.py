@@ -6,11 +6,13 @@ from zope.publisher.interfaces.browser import IBrowserView
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 from Products.Archetypes.interfaces.base import IBaseFolder, IBaseObject
 from Products.ATContentTypes.interfaces import IATImage
+from Products.ATContentTypes.interfaces.topic import IATTopic
 from collective.contentleadimage.interfaces import ILeadImageable
 from collective.contentleadimage.config import IMAGE_FIELD_NAME
 from collective.contentleadimage.config import IMAGE_CAPTION_FIELD_NAME
 
-from rt.simpleslider.interfaces import ISliderSource
+from rt.simpleslider.interfaces import ISliderSource, ISliderBrain
+from rt.simpleslider import SIZE
 
 
 class GenericSliderSource(object):
@@ -64,6 +66,16 @@ class FolderishSliderSource(GenericSliderSource):
         return self.context.objectValues()
 
 
+class TopicSliderSource(GenericSliderSource):
+
+    implements(ISliderSource)
+    adapts(IBrowserView, IATTopic, IDefaultBrowserLayer)
+
+    def items(self):
+        for item in self.context.queryCatalog():
+            yield BrainWrapper(item, self.context)
+
+
 class ImageSliderSource(GenericSliderSource):
 
     implements(ISliderSource)
@@ -72,3 +84,34 @@ class ImageSliderSource(GenericSliderSource):
     def getImage(self):
         caption = self.getCaption()
         return self.context.tag(title=caption)
+
+
+class BrainWrapper(object):
+    implements(ISliderBrain)
+
+    def __init__(self, brain, context):
+        self.brain = brain
+        self.context = context
+
+
+class BrainSliderSource(GenericSliderSource):
+
+    implements(ISliderSource)
+    adapts(IBrowserView, ISliderBrain, IDefaultBrowserLayer)
+
+    def __init__(self, view, context, request):
+        self.context = context.context
+        self.brain = context.brain
+        self.request = request
+        self.view = view
+
+    def getCaption(self):
+        return self.brain.Title
+
+    def getImage(self):
+        if self.brain.hasContentLeadImage:
+            return '<img src="%s/leadImage_%s" title="%s"/>' % \
+                    (self.brain.getURL(), SIZE, self.getCaption())
+        elif self.brain.portal_type == 'Image':
+            return '<img src="%s/image_%s" title="%s"/>' % \
+                    (self.brain.getURL(), SIZE, self.getCaption())

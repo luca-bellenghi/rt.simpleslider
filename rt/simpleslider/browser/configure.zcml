@@ -25,6 +25,7 @@
     <adapter factory=".slidersource.GenericSliderSource" />
     <adapter factory=".slidersource.FolderishSliderSource" />
     <adapter factory=".slidersource.ImageSliderSource" />
-    <adapter factory=".slidersource.LeadImageSliderSource" />
+    <adapter factory=".slidersource.TopicSliderSource" />
+    <adapter factory=".slidersource.BrainSliderSource" />
 
 </configure>

@@ -3,3 +3,4 @@
 from zope.i18nmessageid import MessageFactory as BaseFactory
 
 MessageFactory = BaseFactory('rt.simpleslider')
+SIZE = 'simpleslider'
