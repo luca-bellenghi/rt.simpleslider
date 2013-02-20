@@ -55,7 +55,9 @@ class TopicSliderSource(GenericSliderSource):
 
     def items(self):
         for item in self.context.queryCatalog():
-            yield BrainWrapper(item, self.context)
+            brain = BrainWrapper(item, self.context)
+            if brain.getImage():
+                yield brain
 
 
 class ImageSliderSource(GenericSliderSource):
@@ -75,18 +77,6 @@ class BrainWrapper(object):
         self.brain = brain
         self.context = context
 
-
-class BrainSliderSource(GenericSliderSource):
-
-    implements(ISliderSource)
-    adapts(IBrowserView, ISliderBrain, IDefaultBrowserLayer)
-
-    def __init__(self, view, context, request):
-        self.context = context.context
-        self.brain = context.brain
-        self.request = request
-        self.view = view
-
     def getCaption(self):
         return self.brain.Title
 
@@ -98,3 +88,22 @@ class BrainSliderSource(GenericSliderSource):
         elif self.brain.portal_type == 'Image':
             return '<img src="%s/image_%s" title="%s"/>' % \
                     (self.brain.getURL(), SIZE, self.getCaption())
+
+
+class BrainSliderSource(GenericSliderSource):
+
+    implements(ISliderSource)
+    adapts(IBrowserView, ISliderBrain, IDefaultBrowserLayer)
+
+    def __init__(self, view, context, request):
+        self.context = context.context
+        self.wrapper = context
+        self.brain = context.brain
+        self.request = request
+        self.view = view
+
+    def getCaption(self):
+        return self.wrapper.getCaption()
+
+    def getImage(self):
+        return self.wrapper.getImage()
