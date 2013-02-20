@@ -48,5 +48,8 @@
             permission="zope2.View"
         />
     </configure>
+    <configure zcml:condition="installed redturtle.smartlink">
+        <adapter factory=".smartlink.SmartLinkSliderSource" />
+    </configure>
 
 </configure>

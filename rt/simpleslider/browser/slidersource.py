@@ -22,8 +22,12 @@ class GenericSliderSource(object):
         self.request = request
         self.view = view
 
+    @property
+    def caption_template(self):
+        return """<p class="bjqs-caption"><a href="%(url)s">%(caption)s</a></p>"""
+
     def items(self):
-        return []
+        yield self.context
 
     def getCaption(self):
         return self.context.title_or_id()
@@ -31,12 +35,19 @@ class GenericSliderSource(object):
     def getImage(self):
         return ''
 
+    def getURL(self):
+        return '#'
+
     def getSliderImages(self):
         for item in self.items():
-            slider = getMultiAdapter((self.view, item, self.request),
+            slide = getMultiAdapter((self.view, item, self.request),
                                      ISliderSource)
-            img = slider.getImage()
-            yield img
+            img = slide.getImage()
+            caption = {'caption': slide.getCaption(),
+                       'url': slide.getURL()}
+
+            yield {'image':img,
+                   'caption': self.caption_template % caption}
 
 
 class FolderishSliderSource(GenericSliderSource):
@@ -69,6 +80,9 @@ class ImageSliderSource(GenericSliderSource):
         caption = self.getCaption()
         return self.context.tag(title=caption)
 
+    def getURL(self):
+        return self.context.absolute_url()
+
 
 class BrainWrapper(object):
     implements(ISliderBrain)
@@ -86,6 +100,9 @@ class BrainWrapper(object):
             return '<img src="%s/leadImage_%s" title="%s"/>' % \
                     (self.brain.getURL(), SIZE, self.getCaption())
         elif self.brain.portal_type == 'Image':
+            return '<img src="%s/image_%s" title="%s"/>' % \
+                    (self.brain.getURL(), SIZE, self.getCaption())
+        elif self.brain.portal_type == 'Link':
             return '<img src="%s/image_%s" title="%s"/>' % \
                     (self.brain.getURL(), SIZE, self.getCaption())
 
@@ -107,3 +124,6 @@ class BrainSliderSource(GenericSliderSource):
 
     def getImage(self):
         return self.wrapper.getImage()
+
+    def getURL(self):
+        return self.brain.getURL()

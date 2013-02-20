@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-from zope.component import adapts, getMultiAdapter
+from zope.component import adapts
 from zope.interface import implements
 from zope.publisher.interfaces.browser import IBrowserView
 from Products.Archetypes.interfaces.base import IBaseObject
@@ -14,22 +14,17 @@ from collective.contentleadimage.browser import viewlets
 
 from rt.simpleslider.interfaces import ISliderSource
 from rt.simpleslider.vocabularies import SLIDER_MYSELF
+from rt.simpleslider.browser.slidersource import GenericSliderSource
 
 
-class ContentLeadImageSliderSource(object):
+class ContentLeadImageSliderSource(GenericSliderSource):
 
     implements(ISliderSource)
     adapts(IBrowserView, IBaseObject, ILeadImageSpecific)
 
-    def __init__(self, view, context, request):
-        self.context = context
-        self.request = request
-        self.view = view
-
-    def items(self):
-        if ILeadImageable.providedBy(self.context):
-            return [self.context]
-        return 
+    @property
+    def caption_template(self):
+        return """<p class="bjqs-caption">%(caption)s</p>"""
 
     def getCaption(self):
         if not ILeadImageable.providedBy(self.context):
@@ -49,13 +44,6 @@ class ContentLeadImageSliderSource(object):
             caption = self.getCaption()
             field = self.context.getField(IMAGE_FIELD_NAME)
             return field.tag(self.context, title=caption)
-
-    def getSliderImages(self):
-        for item in self.items():
-            slider = getMultiAdapter((self.view, item, self.request),
-                                     ISliderSource)
-            img = slider.getImage()
-            yield img
 
 
 CLPATH = os.path.dirname(viewlets.__file__)

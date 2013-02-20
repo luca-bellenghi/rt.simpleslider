@@ -1,7 +1,8 @@
 <div id="simpleslider">
   <ul class="bjqs">
     <li tal:repeat="item view/slider_images">
-        <img tal:replace="structure item">
+        <img tal:replace="structure item/image">
+        <p tal:replace="structure item/caption"/>
     </li>
   </ul>
 </div>
