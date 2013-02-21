@@ -52,8 +52,8 @@ class SchemaExtender(BaseSchemaExtender):
            vocabulary_factory='simpleslider.displayvocabulary',
            widget=SelectionWidget(
               label=_(u'Show slider in header'),
-              description=_(u'If selected will display slider in top viewlet (only if slider source is found).\
-                              You can decide to use parent configuration or override manualy here.'),
+              description=_(u'If selected will display slider in top viewlet (only if slider source is found).'
+                             ' You can decide to use parent configuration or override manualy here.'),
               ),
         ),
         ReferenceField('slider_source',

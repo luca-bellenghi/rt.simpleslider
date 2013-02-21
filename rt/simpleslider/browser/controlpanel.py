@@ -8,7 +8,7 @@ class SliderSettingsEditForm(controlpanel.RegistryEditForm):
 
     schema = ISliderSettings
     label = _(u"Simple Slider settings")
-    description = _(u"""""")
+    description = u""
 
     def updateFields(self):
         super(SliderSettingsEditForm, self).updateFields()
