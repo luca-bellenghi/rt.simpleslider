@@ -5,7 +5,7 @@ Overview
 --------
 
 This products adds a simple slider support based on jQuery plugin called 
-`Basic jQuery Slider <http://basic-slider.com/>`_
+[Basic jQuery Slider](http://basic-slider.com/)
 
 
 Using rt.simpleslider
