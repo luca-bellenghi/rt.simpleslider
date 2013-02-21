@@ -501,14 +501,16 @@
             var pausebutton = $('<li><a href="#">||</a></li>');
             pausebutton.children('a').toggle(
                 function () {
-                    pausebutton.addClass("active-marker");
-                    console.log('stop');
-                    state.animating = true;
+                    pausebutton.addClass("active-pause");
+                    clearInterval(state.interval);
+                    state.paused = true;
                 },
                 function () {
-                    pausebutton.removeClass("active-marker");
-                    console.log('start');
-                    state.animating = false;
+                    pausebutton.removeClass("active-pause");
+                    state.interval = setInterval(function () {
+                        go(vars.fwd);
+                    }, settings.animspeed);
+                    state.paused = false;
                 }
             );
             pausebutton.appendTo($m_wrapper);
@@ -557,17 +559,13 @@
 
         var conf_hoverpause = function() {
 
-            $wrapper.hover(function () {
-                if (!state.paused) {
-                    clearInterval(state.interval);
-                    state.paused = true;
-                }
+            $slider.hover(function () {
+                clearInterval(state.interval);
             }, function () {
-                if (state.paused) {
+                if (!state.paused) {
                     state.interval = setInterval(function () {
                         go(vars.fwd, false);
                     }, settings.animspeed);
-                    state.paused = false;
                 }
             });
 

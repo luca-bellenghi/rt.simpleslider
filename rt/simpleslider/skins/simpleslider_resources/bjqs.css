@@ -35,6 +35,7 @@ ol.bjqs-markers li a{
 }
 
 ol.bjqs-markers li.active-marker a,
+ol.bjqs-markers li.active-pause a,
 ol.bjqs-markers li a:hover{
   background: #999;
 }
