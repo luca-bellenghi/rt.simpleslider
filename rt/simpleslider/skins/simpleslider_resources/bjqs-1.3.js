@@ -497,6 +497,22 @@
 
             });
 
+            // a pause action
+            var pausebutton = $('<li><a href="#">||</a></li>');
+            pausebutton.children('a').toggle(
+                function () {
+                    pausebutton.addClass("active-marker");
+                    console.log('stop');
+                    state.animating = true;
+                },
+                function () {
+                    pausebutton.removeClass("active-marker");
+                    console.log('start');
+                    state.animating = false;
+                }
+            );
+            pausebutton.appendTo($m_wrapper);
+
             $m_wrapper.appendTo($wrapper);
             $m_markers = $m_wrapper.find('li');
 

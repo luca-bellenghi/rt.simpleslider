@@ -4,8 +4,4 @@
         id="bjqs-1.3.js"
         cacheable="True" compression="safe" cookable="False"
         enabled="True" expression=""  inline="False"/>
-  <javascript
-        id="simpleslider.js" insert-after="bjqs-1.3.js"
-        cacheable="True" compression="safe" cookable="False"
-        enabled="True" expression=""  inline="False"/>
 </object>
