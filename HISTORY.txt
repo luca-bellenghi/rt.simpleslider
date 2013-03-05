@@ -4,7 +4,7 @@ Changelog
 1.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- update caption_template [amleczko]
 
 
 1.1 (2013-03-05)

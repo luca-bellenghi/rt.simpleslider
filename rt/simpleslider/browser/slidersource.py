@@ -80,8 +80,9 @@ class ImageSliderSource(GenericSliderSource):
         caption = self.getCaption()
         return self.context.tag(title=caption)
 
-    def getURL(self):
-        return '#'
+    @property
+    def caption_template(self):
+        return """<p class="bjqs-caption">%(caption)s</p>"""
 
 
 class BrainWrapper(object):
@@ -90,6 +91,13 @@ class BrainWrapper(object):
     def __init__(self, brain, context):
         self.brain = brain
         self.context = context
+
+    @property
+    def caption_template(self):
+        if self.brain.portal_type == 'Image':
+            return """<p class="bjqs-caption">%(caption)s</p>"""
+        else:
+            return """<p class="bjqs-caption"><a href="%(url)s">%(caption)s</a></p>"""
 
     def getCaption(self):
         return self.brain.Title
@@ -125,8 +133,6 @@ class BrainSliderSource(GenericSliderSource):
     def getImage(self):
         return self.wrapper.getImage()
 
-    def getURL(self):
-        if self.brain.portal_type == 'Link':
-            return self.brain.getURL()
-        else:
-            return '#'
+    @property
+    def caption_template(self):
+        return self.wrapper.caption_template
