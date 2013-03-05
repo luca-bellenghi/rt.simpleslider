@@ -47,7 +47,7 @@ class GenericSliderSource(object):
                        'url': slide.getURL()}
 
             yield {'image':img,
-                   'caption': self.caption_template % caption}
+                   'caption': slide.caption_template % caption}
 
 
 class FolderishSliderSource(GenericSliderSource):
