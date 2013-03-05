@@ -81,7 +81,7 @@ class ImageSliderSource(GenericSliderSource):
         return self.context.tag(title=caption)
 
     def getURL(self):
-        return self.context.absolute_url()
+        return '#'
 
 
 class BrainWrapper(object):
@@ -126,4 +126,7 @@ class BrainSliderSource(GenericSliderSource):
         return self.wrapper.getImage()
 
     def getURL(self):
-        return self.brain.getURL()
+        if self.brain.portal_type == 'Link':
+            return self.brain.getURL()
+        else:
+            return '#'
