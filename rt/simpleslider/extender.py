@@ -37,7 +37,10 @@ class BaseSchemaExtender(object):
 
     def getFields(self):
         registry = getUtility(IRegistry)
-        settings = registry.forInterface(ISliderSettings)
+        try:
+            settings = registry.forInterface(ISliderSettings)
+        except KeyError:
+            return []
         portal_type = getattr(self.context, 'portal_type', None)
         if portal_type in settings.simpleslider_allowed_types:
             return self.fields

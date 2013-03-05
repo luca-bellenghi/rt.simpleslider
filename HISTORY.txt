@@ -5,6 +5,7 @@ Changelog
 ----------------
 
 - update caption_template [amleczko]
+- make sure the settings don't fail [amleczko]
 
 
 1.1 (2013-03-05)
