@@ -12,7 +12,7 @@ JS_TEMPLATE = """
               'height' : %(height)s,
               'width' : %(width)s,
               'usecaptions' : false,
-              'responsive' : true,
+              'responsive' : true
         });
     }(jQuery));"""
 
