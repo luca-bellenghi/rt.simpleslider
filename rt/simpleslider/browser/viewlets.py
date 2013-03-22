@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import queryMultiAdapter, getMultiAdapter
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.imaging.utils import getAllowedSizes
@@ -19,6 +20,7 @@ JS_TEMPLATE = """
 
 class Slider(ViewletBase):
     """ This viewlet renders the placholder for gallery """
+    index = ViewPageTemplateFile('slider_viewlet.pt')
 
     def update(self):
         super(Slider, self).update()
