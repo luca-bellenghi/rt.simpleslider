@@ -100,6 +100,14 @@
         // run through options and initialise settings
         var init = function() {
 
+            // some handly events wrappers
+            $wrapper.bind('hideslider', function(event){
+                state.animating = true;
+            });
+            $wrapper.bind('showslider', function(event){
+                state.animating = false;
+            });
+
             // differentiate slider li from content li
             $slides.addClass('bjqs-slide');
 
