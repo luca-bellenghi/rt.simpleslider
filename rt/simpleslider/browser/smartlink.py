@@ -6,6 +6,7 @@ from redturtle.smartlink.interfaces import ISmartLink
 
 from rt.simpleslider.interfaces import ISliderSource
 from rt.simpleslider.browser.slidersource import GenericSliderSource
+from rt.simpleslider import SIZE
 
 
 class SmartLinkSliderSource(GenericSliderSource):
@@ -19,4 +20,4 @@ class SmartLinkSliderSource(GenericSliderSource):
     def getImage(self):
         caption = self.getCaption()
         field = self.context.getField('image')
-        return field.tag(self.context, title=caption)
+        return field.tag(self.context, title=caption, scale=SIZE)

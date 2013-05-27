@@ -15,6 +15,7 @@ from collective.contentleadimage.browser import viewlets
 from rt.simpleslider.interfaces import ISliderSource
 from rt.simpleslider.vocabularies import SLIDER_MYSELF
 from rt.simpleslider.browser.slidersource import GenericSliderSource
+from rt.simpleslider import SIZE
 
 
 class ContentLeadImageSliderSource(GenericSliderSource):
@@ -43,7 +44,7 @@ class ContentLeadImageSliderSource(GenericSliderSource):
         else:
             caption = self.getCaption()
             field = self.context.getField(IMAGE_FIELD_NAME)
-            return field.tag(self.context, title=caption)
+            return field.tag(self.context, title=caption, scale=SIZE)
 
 
 CLPATH = os.path.dirname(viewlets.__file__)

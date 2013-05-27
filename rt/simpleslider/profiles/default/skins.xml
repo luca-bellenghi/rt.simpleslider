@@ -9,8 +9,7 @@
        persist indefinitely. In the ZMI, this value is known as 'Skin Cookie
        persistence'.
        -->
-<object name="portal_skins" allow_any="False" cookie_persistence="False"
-   default_skin="rt.simpleslider">
+<object name="portal_skins">
 
  <!-- This list registers the folders that are stored in the skins directory
       of your product (on the filesystem) as Filesystem Directory Views within
@@ -36,12 +35,6 @@
        Note: insert-before (and -after) accepts the value "*" which means
        "all".
        -->
- <skin-path name="rt.simpleslider" based-on="Sunburst Theme">
-  <layer name="simpleslider_templates"
-     insert-after="custom"/>
-  <layer name="simpleslider_resources"
-     insert-after="simpleslider_templates"/>
- </skin-path>
  <skin-path name="*">
   <layer name="simpleslider_templates"
      insert-after="custom"/>

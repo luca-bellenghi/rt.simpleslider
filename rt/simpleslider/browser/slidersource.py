@@ -78,7 +78,7 @@ class ImageSliderSource(GenericSliderSource):
 
     def getImage(self):
         caption = self.getCaption()
-        return self.context.tag(title=caption)
+        return self.context.tag(title=caption, scale=SIZE)
 
     @property
     def caption_template(self):
