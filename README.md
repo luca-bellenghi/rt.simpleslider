@@ -1,10 +1,12 @@
 rt.simpleslider Package Readme
 ==============================
 
+This version is customized for turismo aretino
+
 Overview
 --------
 
-This products adds a simple slider support based on jQuery plugin called 
+This products adds a simple slider support based on jQuery plugin called
 [Basic jQuery Slider](http://basic-slider.com/)
 
 
@@ -19,7 +21,7 @@ Simpleslider adds support for basic Plone types such as:
  * `redturtle.smartlink`
 
 Depends which type of object you will choose slider will generate proper HTML
-snippet for you. In case of `ATImage` or objects that provides `ILeadImageable` 
+snippet for you. In case of `ATImage` or objects that provides `ILeadImageable`
 you will get a single image. In case of `Topic` or `Folder` the slider with try to render
 all items provided by query/folderlisting.
 
