@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-21 08:03+0000\n"
+"POT-Creation-Date: 2014-04-13 08:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: rt.simpleslider\n"
 
-#: ./extender.py:55
+#: ./extender.py:58
 msgid "If selected will display slider in top viewlet (only if slider source is found). You can decide to use parent configuration or override manualy here."
 msgstr ""
 
@@ -29,11 +29,11 @@ msgstr ""
 msgid "Portal types for 'simpleslider' field"
 msgstr ""
 
-#: ./extender.py:65
+#: ./extender.py:68
 msgid "Relation with other objects to show slider."
 msgstr ""
 
-#: ./extender.py:54
+#: ./extender.py:57
 msgid "Show slider in header"
 msgstr ""
 
@@ -41,16 +41,8 @@ msgstr ""
 msgid "Simple Slider settings"
 msgstr ""
 
-#: ./extender.py:74
-msgid "Slider description"
-msgstr ""
-
-#: ./extender.py:64
+#: ./extender.py:67
 msgid "Slider source"
-msgstr ""
-
-#: ./extender.py:75
-msgid "Write here some description that will compare in the slider. Please, use subtitles ('h3' tag) to correctly show title in the slider"
 msgstr ""
 
 #. Default: "Do not display"

@@ -24,7 +24,19 @@ class GenericSliderSource(object):
 
     @property
     def caption_template(self):
-        return """<p class="bjqs-caption"><a href="%(url)s">%(caption)s</a></p>"""
+        if not self.getDescription():
+            return """<p class="bjqs-caption">
+                          <span class="bjqs-title">
+                              <a href="%(url)s" title="%(caption)s">%(caption)s</a>
+                          </span>
+                      </p>"""
+        else:
+            return """<p class="bjqs-caption">
+                          <span class="bjqs-title">
+                              <a href="%(url)s" title="%(caption)s">%(caption)s</a>
+                          </span>
+                          <span class='bjqs-description'>%(description)s</span>
+                      </p>"""
 
     def items(self):
         yield self.context
@@ -32,11 +44,14 @@ class GenericSliderSource(object):
     def getCaption(self):
         return self.context.title_or_id()
 
+    def getDescription(self):
+        return self.context.Description()
+
     def getImage(self):
         return ''
 
     def getURL(self):
-        return '#'
+        return self.context.absolute_url()
 
     def getSliderImages(self):
         for item in self.items():
@@ -44,6 +59,7 @@ class GenericSliderSource(object):
                                      ISliderSource)
             img = slide.getImage()
             caption = {'caption': slide.getCaption(),
+                       'description': slide.getDescription(),
                        'url': slide.getURL()}
 
             yield {'image':img,
@@ -80,10 +96,24 @@ class ImageSliderSource(GenericSliderSource):
         caption = self.getCaption()
         return self.context.tag(title=caption, scale=SIZE)
 
+    def getURL(self):
+        return '#'
+
     @property
     def caption_template(self):
-        return """<p class="bjqs-caption">%(caption)s</p>"""
-
+        img = self.context
+        if not self.getDescription():
+            return """<p class="bjqs-caption">
+                         <span class="bjqs-title">
+                             <a href="%(url)s" title="%(caption)s">%(caption)s</a>
+                         </span>
+                      </p>"""
+        return """<p class="bjqs-caption">
+                      <span class="bjqs-title">
+                         <a href="%(url)s" title="%(caption)s">%(caption)s</a>
+                      </span>
+                      <span class='bjqs-description'>%(description)s</span>
+                  </p>"""
 
 class BrainWrapper(object):
     implements(ISliderBrain)
@@ -95,12 +125,38 @@ class BrainWrapper(object):
     @property
     def caption_template(self):
         if self.brain.portal_type == 'Image':
-            return """<p class="bjqs-caption">%(caption)s</p>"""
+            if not self.getDescription():
+                return """<p class="bjqs-caption">
+                             <span class="bjqs-title">
+                                 <a href="%(url)s" title="%(caption)s">%(caption)s</a>
+                             </span>
+                          </p>"""
+            return """<p class="bjqs-caption">
+                      <span class="bjqs-title">
+                          <a href="%(url)s" title="%(caption)s">%(caption)s</a>
+                      </span>
+                      <span class='bjqs-description'>%(description)s</span>
+                  </p>"""
         else:
-            return """<p class="bjqs-caption"><a href="%(url)s">%(caption)s</a></p>"""
+            if not self.getDescription():
+                return """<p class="bjqs-caption">
+                             <span class="bjqs-title">
+                                 <a href="%(url)s" title="%(caption)s">%(caption)s</a>
+                             </span>
+                          </p>"""
+            return """<p class="bjqs-caption">
+                      <span class="bjqs-title">
+                          <a href="%(url)s" title="%(caption)s">%(caption)s</a>
+                      </span>
+                      <span class='bjqs-description'>%(description)s</span>
+                  </p>"""
+
 
     def getCaption(self):
         return self.brain.Title
+
+    def getDescription(self):
+        return self.brain.Description
 
     def getImage(self):
         cl = getattr(self.brain, 'hasContentLeadImage', False)
@@ -132,6 +188,9 @@ class BrainSliderSource(GenericSliderSource):
 
     def getImage(self):
         return self.wrapper.getImage()
+
+    def getDescription(self):
+        return self.wrapper.getDescription()
 
     @property
     def caption_template(self):

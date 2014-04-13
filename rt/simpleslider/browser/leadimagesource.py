@@ -25,7 +25,20 @@ class ContentLeadImageSliderSource(GenericSliderSource):
 
     @property
     def caption_template(self):
-        return """<p class="bjqs-caption">%(caption)s</p>"""
+        if not self.getDescription():
+            return """<p class="bjqs-caption">
+                          <span class="bjqs-title">
+                              <a href="%(url)s" title="%(caption)s">%(caption)s</a>
+                          </span>
+                      </p>"""
+        else:
+            return """<p class="bjqs-caption">
+                          <span class="bjqs-title">
+                              <a href="%(url)s" title="%(caption)s">%(caption)s</a>
+                          </span>
+                          <span class='bjqs-description'>%(description)s</span>
+                      </p>"""
+
 
     def getCaption(self):
         if not ILeadImageable.providedBy(self.context):

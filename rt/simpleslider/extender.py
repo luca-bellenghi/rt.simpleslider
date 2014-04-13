@@ -69,13 +69,13 @@ class SchemaExtender(BaseSchemaExtender):
                 force_close_on_insert=True,
                 ),
             ),
-        TextField('slider_description',
-         schemata='settings',
-         default_content_type = 'text/html',
-         default_output_type = 'text/x-html-safe',
-         widget=RichWidget(
-            label=_(u'Slider description'),
-            description=_(u"Write here some description that will compare in the slider. Please, use subtitles ('h3' tag) to correctly show title in the slider")
-            ),
-         ),
+#        TextField('slider_description',
+#         schemata='settings',
+#         default_content_type = 'text/html',
+#         default_output_type = 'text/x-html-safe',
+#         widget=RichWidget(
+#            label=_(u'Slider description'),
+#            description=_(u"Write here some description that will compare in the slider. Please, use subtitles ('h3' tag) to correctly show title in the slider")
+#            ),
+#         ),
     ]

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-21 08:03+0000\n"
+"POT-Creation-Date: 2014-04-13 08:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: rt.simpleslider\n"
 
-#: ./extender.py:55
+#: ./extender.py:58
 msgid "If selected will display slider in top viewlet (only if slider source is found). You can decide to use parent configuration or override manualy here."
 msgstr "Se selezionato mostrerà lo slider in cima al sito, solo se la sorgente per lo slider viene trovata. Si può decidere di utilizzare una configurazione da una cartella superiore oppure sovrascrivi la configurazione"
 
@@ -29,11 +29,11 @@ msgstr "Tipi di contenuto a cui i campi di configurazione dello slider devono es
 msgid "Portal types for 'simpleslider' field"
 msgstr "Tipi di contenuto a cui associare lo slider"
 
-#: ./extender.py:65
+#: ./extender.py:68
 msgid "Relation with other objects to show slider."
 msgstr "Relazione con un altro oggetto per mostrare lo slider"
 
-#: ./extender.py:54
+#: ./extender.py:57
 msgid "Show slider in header"
 msgstr "Mostra lo slider"
 
@@ -41,17 +41,9 @@ msgstr "Mostra lo slider"
 msgid "Simple Slider settings"
 msgstr "Impostazioni dello slider"
 
-#: ./extender.py:74
-msgid "Slider description"
-msgstr "Descrizione dello slider"
-
-#: ./extender.py:64
+#: ./extender.py:67
 msgid "Slider source"
 msgstr "Sorgente per lo slider"
-
-#: ./extender.py:75
-msgid "Write here some description that will compare in the slider. Please, use subtitles ('h3' tag) to correctly show title in the slider"
-msgstr "Scrivi delle descrizioni che compariranno nello slider. Usare il tag h3 (i sottotitoli) per mostrare il titolo nello slider"
 
 #. Default: "Do not display"
 #: ./vocabularies.py:30
