@@ -105,12 +105,12 @@ class ImageSliderSource(GenericSliderSource):
         if not self.getDescription():
             return """<p class="bjqs-caption">
                          <span class="bjqs-title">
-                             <a href="%(url)s" title="%(caption)s">%(caption)s</a>
+                             <span>%(caption)s</span>
                          </span>
                       </p>"""
         return """<p class="bjqs-caption">
                       <span class="bjqs-title">
-                         <a href="%(url)s" title="%(caption)s">%(caption)s</a>
+                         <span>%(caption)s</span>
                       </span>
                       <span class='bjqs-description'>%(description)s</span>
                   </p>"""

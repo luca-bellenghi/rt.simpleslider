@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.3.3turismoaretino'
+version = '1.3.4turismoaretino'
 
 setup(name='rt.simpleslider',
       version=version,

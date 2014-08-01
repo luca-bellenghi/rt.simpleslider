@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.3.3turismoaretino (2014-08-01)
+--------------------------------
+
+- fix link on images [lucabel]
+
 1.3.3turismoaretino (2014-04-13)
 --------------------------------
 

@@ -5,7 +5,7 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="rt.simpleslider">
-
+  <include package="Products.CMFCore" file="permissions.zcml"/>
   <i18n:registerTranslations directory="locales" />
   <include package=".browser"/>
   <include file="skins.zcml" />
